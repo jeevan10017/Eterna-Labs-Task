@@ -145,7 +145,7 @@ export const PulseToolbar = memo(function PulseToolbar({ toolbarIcons }: PulseTo
                 className="w-9 h-9 rounded-full border border-[#1f2433] bg-[#0f121c] text-[#c8cee5] hover:bg-[#181d2c] transition-colors flex items-center justify-center"
                 type="button"
               >
-                <Icon className="w-4.25 h-4.25" />
+                <Icon className="w-4 h-4" />
               </button>
             ))}
           </div>
