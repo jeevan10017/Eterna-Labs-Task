@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  font-size: 12px !important;
+}
+
 /* Axiom UI color palette */
 :root {
   /* Exact colors from Axiom Trade original UI */
