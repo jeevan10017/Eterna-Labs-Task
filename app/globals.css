@@ -1,26 +1,152 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Exact colors from Axiom Trade original UI */
+  --background: #0a0a0a; /* Main background */
+  --backgroundSecondary: #151515; /* Card background */
+  --backgroundTertiary: #1a1a1a; /* Hover states */
+  --foreground: #fcfcfc; /* Primary text */
+  --textSecondary: #a0a0a0; /* Secondary text */
+  --textTertiary: #707070; /* Tertiary text */
+  --card-bg: #151515; /* Card background */
+  --primaryStroke: #2a2a2a; /* Border color */
+  --secondaryStroke: #2a2a2a; /* Border color */
+  --primaryBlue: #3b82f6; /* Navigation/Filter active */
+  --primaryBlueHover: #2563eb; /* Hover state */
+  --buttonBlue: #526fff; /* Action button */
+  --buttonBlueHover: #3d5aff; /* Button hover */
+  --accent: #526fff;
+  --positive: #10b981;
+  --negative: #ef4444;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondaryStroke);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--textTertiary);
+}
+
+/* Hide scrollbar for horizontal overflow */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth transitions - only apply to interactive elements */
+button,
+a,
+[role="button"] {
+  transition-property: color, background-color, border-color, opacity, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 125ms;
+}
+
+/* Duration utilities matching Axiom Trade */
+.duration-125 {
+  transition-duration: 125ms;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(
+    to right,
+    #18181a 0%,
+    #323542 20%,
+    #18181a 40%,
+    #18181a 100%
+  );
+  background-size: 1000px 100%;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Color transition for price changes */
+.price-up {
+  color: var(--positive);
+  transition: color 0.3s ease;
+}
+
+.price-down {
+  color: var(--negative);
+  transition: color 0.3s ease;
 }
